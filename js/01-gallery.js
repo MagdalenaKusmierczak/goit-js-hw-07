@@ -26,9 +26,12 @@ gallery.insertAdjacentHTML("beforeend", galleryItem);
 gallery.addEventListener("click", selectImage);
 
 function selectImage(event) {
+  event.preventDefault();
   if (event.target.nodeName !== "IMG") {
     return;
   }
-  const selectedImage = event.target.dataset.image;
-  output = selectedImage;
+  const selectedImage = event.target.dataset;
 }
+
+//Creating modal after click on gallery-element
+//Changing value of img src in modal before opening. Usage of ready modal with img from basicLightbox library
