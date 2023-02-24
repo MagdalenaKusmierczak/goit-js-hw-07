@@ -9,7 +9,7 @@ const galleryItem = galleryItems
   .map(
     (item) => `
     <div class="gallery__item">
-        <a class="gallery__link" href="large-image.jpg">
+        <a class="gallery__link" href="${item.original}">
             <img
       class="gallery__image"
       src="${item.preview}"
@@ -23,3 +23,12 @@ const galleryItem = galleryItems
 gallery.insertAdjacentHTML("beforeend", galleryItem);
 
 //Setting target on div.gallery and getting url of larger img
+gallery.addEventListener("click", selectImage);
+
+function selectImage(event) {
+  if (event.target.nodeName !== "IMG") {
+    return;
+  }
+  const selectedImage = event.target.dataset.image;
+  output = selectedImage;
+}
