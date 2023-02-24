@@ -35,3 +35,5 @@ function selectImage(event) {
 
 //Creating modal after click on gallery-element
 //Changing value of img src in modal before opening. Usage of ready modal with img from basicLightbox library
+
+//Additional  - closing modal with ESC key. Lintener active only when modal is open.
