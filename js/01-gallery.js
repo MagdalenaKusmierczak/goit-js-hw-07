@@ -1,6 +1,5 @@
 import { galleryItems } from "./gallery-items.js";
 // Change code below this line
-console.log(galleryItems);
 
 const gallery = document.querySelector(".gallery");
 
@@ -23,17 +22,27 @@ const galleryItem = galleryItems
 gallery.insertAdjacentHTML("beforeend", galleryItem);
 
 //Setting target on div.gallery and getting url of larger img
-gallery.addEventListener("click", selectImage);
+gallery.addEventListener("click", selectImage); //Creating modal after click on gallery-element.
 
 function selectImage(event) {
   event.preventDefault();
   if (event.target.nodeName !== "IMG") {
     return;
   }
-  const selectedImage = event.target.dataset;
+
+  const selectedImage = event.target.dataset.source;
+  const imgAlt = event.target.alt;
+  const instance = basicLightbox // Usage of ready modal with img from basicLightbox library
+    .create(
+      `<img width="1400" height="900" src="${selectedImage}" alt="${imgAlt}">` //Changing value of img src in modal before opening.
+    )
+    .show();
+  // function closingOnEsc(event) {
+  //   const visible = basicLightbox.visible();
+  //   if ((event.code === "Escape") & (visible === true)) {
+  //     instance.close();
+  //   }
+  // }
+  // document.addEventListener("keydown", closingOnEsc);
 }
-
-//Creating modal after click on gallery-element
-//Changing value of img src in modal before opening. Usage of ready modal with img from basicLightbox library
-
 //Additional  - closing modal with ESC key. Lintener active only when modal is open.
