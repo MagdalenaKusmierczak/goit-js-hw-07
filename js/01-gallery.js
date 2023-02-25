@@ -26,23 +26,30 @@ gallery.addEventListener("click", selectImage); //Creating modal after click on 
 
 function selectImage(event) {
   event.preventDefault();
+  const selectedImage = event.target.dataset.source;
+  const imgAlt = event.target.alt;
+
   if (event.target.nodeName !== "IMG") {
     return;
   }
 
-  const selectedImage = event.target.dataset.source;
-  const imgAlt = event.target.alt;
   const instance = basicLightbox // Usage of ready modal with img from basicLightbox library
     .create(
-      `<img width="1400" height="900" src="${selectedImage}" alt="${imgAlt}">` //Changing value of img src in modal before opening.
-    )
-    .show();
-  // function closingOnEsc(event) {
-  //   const visible = basicLightbox.visible();
-  //   if ((event.code === "Escape") & (visible === true)) {
-  //     instance.close();
-  //   }
-  // }
-  // document.addEventListener("keydown", closingOnEsc);
+      `<img width="1400" height="900" src="${selectedImage}" alt="${imgAlt}">`, //Changing value of img src in modal before opening.
+      //Additional  - closing modal with ESC key. Lintener active only when modal is open.
+      {
+        onShow: () => {
+          document.addEventListener("keydown", onEsc);
+        },
+        onClose: () => {
+          document.removeEventListener("keydown", onEsc);
+        },
+      }
+    );
+  const onEsc = (event) => {
+    if (event.code === "Escape") {
+      instance.close();
+    }
+  };
+  instance.show();
 }
-//Additional  - closing modal with ESC key. Lintener active only when modal is open.
