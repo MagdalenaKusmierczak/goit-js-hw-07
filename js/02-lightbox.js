@@ -13,4 +13,4 @@ const galleryItem = galleryItems
   .join("");
 gallery.insertAdjacentHTML("beforeend", galleryItem);
 
-//Initialization of library
+//Initialization of library SimpleLightBox
