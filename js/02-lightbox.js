@@ -14,3 +14,8 @@ const galleryItem = galleryItems
 gallery.insertAdjacentHTML("beforeend", galleryItem);
 
 //Initialization of library SimpleLightBox
+const lightbox = new SimpleLightbox(".gallery a", {
+  caption: true,
+  captionsData: "alt",
+  captionDelay: 250,
+});
